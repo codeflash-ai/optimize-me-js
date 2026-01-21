@@ -2,5 +2,10 @@
  * Stats Module - Statistical and ML Functions
  */
 
-export * from './statistical.js';
-export * from './dataframe.js';
+const statistical = require('./statistical.js');
+const dataframe = require('./dataframe.js');
+
+module.exports = {
+  ...statistical,
+  ...dataframe
+};

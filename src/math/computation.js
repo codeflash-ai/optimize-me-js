@@ -9,7 +9,7 @@
  * @param {number} b - Second number
  * @returns {number} - GCD of a and b
  */
-export function gcdRecursive(a, b) {
+function gcdRecursive(a, b) {
   a = Math.abs(a);
   b = Math.abs(b);
 
@@ -25,7 +25,7 @@ export function gcdRecursive(a, b) {
  * @param {number} b - Second number
  * @returns {number} - LCM of a and b
  */
-export function lcm(a, b) {
+function lcm(a, b) {
   return Math.abs(a * b) / gcdRecursive(a, b);
 }
 
@@ -34,7 +34,7 @@ export function lcm(a, b) {
  * @param {number} n - Number to check
  * @returns {boolean} - True if prime
  */
-export function isPrime(n) {
+function isPrime(n) {
   if (n < 2) {
     return false;
   }
@@ -59,7 +59,7 @@ export function isPrime(n) {
  * @param {number} n - Upper limit
  * @returns {number[]} - Array of primes
  */
-export function sieveOfEratosthenes(n) {
+function sieveOfEratosthenes(n) {
   if (n < 2) {
     return [];
   }
@@ -91,7 +91,7 @@ export function sieveOfEratosthenes(n) {
  * @param {number} numSamples - Number of random samples
  * @returns {number} - Estimated value of Pi
  */
-export function monteCarloPi(numSamples) {
+function monteCarloPi(numSamples) {
   let insideCircle = 0;
 
   for (let i = 0; i < numSamples; i++) {
@@ -113,7 +113,7 @@ export function monteCarloPi(numSamples) {
  * @param {number} maxIter - Maximum iterations
  * @returns {number} - Square root approximation
  */
-export function newtonRaphsonSqrt(x, epsilon = 1e-10, maxIter = 100) {
+function newtonRaphsonSqrt(x, epsilon = 1e-10, maxIter = 100) {
   if (x < 0) {
     throw new Error('Cannot compute square root of negative number');
   }
@@ -145,7 +145,7 @@ export function newtonRaphsonSqrt(x, epsilon = 1e-10, maxIter = 100) {
  * @param {number} maxIter - Maximum iterations
  * @returns {number} - Root approximation
  */
-export function bisectionMethod(f, a, b, epsilon = 1e-10, maxIter = 100) {
+function bisectionMethod(f, a, b, epsilon = 1e-10, maxIter = 100) {
   if (f(a) * f(b) > 0) {
     throw new Error('f(a) and f(b) must have opposite signs');
   }
@@ -174,7 +174,7 @@ export function bisectionMethod(f, a, b, epsilon = 1e-10, maxIter = 100) {
  * @param {number} x - Point to interpolate at
  * @returns {number} - Interpolated value
  */
-export function lagrangeInterpolation(points, x) {
+function lagrangeInterpolation(points, x) {
   let result = 0;
 
   for (let i = 0; i < points.length; i++) {
@@ -197,7 +197,7 @@ export function lagrangeInterpolation(points, x) {
  * @param {number} n - Number
  * @returns {number} - n!
  */
-export function factorial(n) {
+function factorial(n) {
   if (n < 0) {
     throw new Error('Factorial not defined for negative numbers');
   }
@@ -213,7 +213,7 @@ export function factorial(n) {
  * @param {number} exp - Exponent
  * @returns {number} - base^exp
  */
-export function power(base, exp) {
+function power(base, exp) {
   if (exp === 0) {
     return 1;
   }
@@ -226,3 +226,16 @@ export function power(base, exp) {
   }
   return base * power(base, exp - 1);
 }
+
+module.exports = {
+  gcdRecursive,
+  lcm,
+  isPrime,
+  sieveOfEratosthenes,
+  monteCarloPi,
+  newtonRaphsonSqrt,
+  bisectionMethod,
+  lagrangeInterpolation,
+  factorial,
+  power
+};

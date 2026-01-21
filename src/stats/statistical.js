@@ -8,7 +8,7 @@
  * @param {number[]} arr - Input array
  * @returns {number} - Mean value
  */
-export function mean(arr) {
+function mean(arr) {
   if (arr.length === 0) return NaN;
   return arr.reduce((a, b) => a + b, 0) / arr.length;
 }
@@ -19,7 +19,7 @@ export function mean(arr) {
  * @param {boolean} sample - Whether to use sample std (n-1)
  * @returns {number} - Standard deviation
  */
-export function std(arr, sample = false) {
+function std(arr, sample = false) {
   if (arr.length === 0) return NaN;
   const m = mean(arr);
   const squaredDiffs = arr.map(x => (x - m) ** 2);
@@ -33,7 +33,7 @@ export function std(arr, sample = false) {
  * @param {boolean} sample - Whether to use sample variance (n-1)
  * @returns {number} - Variance
  */
-export function variance(arr, sample = false) {
+function variance(arr, sample = false) {
   const s = std(arr, sample);
   return s * s;
 }
@@ -43,7 +43,7 @@ export function variance(arr, sample = false) {
  * @param {number[]} arr - Input array
  * @returns {number} - Median value
  */
-export function median(arr) {
+function median(arr) {
   if (arr.length === 0) return NaN;
   const sorted = [...arr].sort((a, b) => a - b);
   const mid = Math.floor(sorted.length / 2);
@@ -58,7 +58,7 @@ export function median(arr) {
  * @param {number[]} series - Input series
  * @returns {Object} - Statistics object
  */
-export function describe(series) {
+function describe(series) {
   const sorted = [...series].sort((a, b) => a - b);
   const n = series.length;
 
@@ -80,7 +80,7 @@ export function describe(series) {
  * @param {number[]} b - Second vector
  * @returns {number} - Cosine similarity (-1 to 1)
  */
-export function cosineSimilarityVectors(a, b) {
+function cosineSimilarityVectors(a, b) {
   let dotProduct = 0;
   let normA = 0;
   let normB = 0;
@@ -103,7 +103,7 @@ export function cosineSimilarityVectors(a, b) {
  * @param {number[][]} Y - Second matrix (rows are vectors)
  * @returns {number[][]} - Similarity matrix
  */
-export function cosineSimilarity(X, Y) {
+function cosineSimilarity(X, Y) {
   const result = [];
 
   for (let i = 0; i < X.length; i++) {
@@ -125,7 +125,7 @@ export function cosineSimilarity(X, Y) {
  * @param {number} scoreThreshold - Minimum score threshold
  * @returns {Array<{xIndex: number, yIndex: number, score: number}>[]} - Top matches for each X row
  */
-export function cosineSimilarityTopK(X, Y, topK = 5, scoreThreshold = 0) {
+function cosineSimilarityTopK(X, Y, topK = 5, scoreThreshold = 0) {
   const results = [];
 
   for (let i = 0; i < X.length; i++) {
@@ -151,7 +151,7 @@ export function cosineSimilarityTopK(X, Y, topK = 5, scoreThreshold = 0) {
  * @param {number[]} y - Second array
  * @returns {number} - Correlation coefficient
  */
-export function pearsonCorrelation(x, y) {
+function pearsonCorrelation(x, y) {
   const n = x.length;
   const meanX = mean(x);
   const meanY = mean(y);
@@ -179,7 +179,7 @@ export function pearsonCorrelation(x, y) {
  * @param {Object} df - Object with column arrays
  * @returns {Object} - Correlation matrix as object
  */
-export function correlation(df) {
+function correlation(df) {
   const columns = Object.keys(df);
   const result = {};
 
@@ -199,7 +199,7 @@ export function correlation(df) {
  * @param {number} nComponents - Number of components
  * @returns {{components: number[][], explained: number[], transformed: number[][]}} - PCA result
  */
-export function pca(X, nComponents) {
+function pca(X, nComponents) {
   const n = X.length;
   const m = X[0].length;
 
@@ -304,7 +304,7 @@ export function pca(X, nComponents) {
  * @param {number} maxIter - Maximum iterations
  * @returns {{centroids: number[][], labels: number[]}} - Cluster result
  */
-export function kmeansClustering(X, k, maxIter = 100) {
+function kmeansClustering(X, k, maxIter = 100) {
   const n = X.length;
   const m = X[0].length;
 
@@ -384,7 +384,7 @@ export function kmeansClustering(X, k, maxIter = 100) {
  * @param {number} iterations - Number of iterations
  * @returns {{weights: number[], bias: number}} - Trained parameters
  */
-export function gradientDescent(X, y, learningRate = 0.01, iterations = 1000) {
+function gradientDescent(X, y, learningRate = 0.01, iterations = 1000) {
   const n = X.length;
   const m = X[0].length;
 
@@ -436,7 +436,7 @@ export function gradientDescent(X, y, learningRate = 0.01, iterations = 1000) {
  * @param {number} bias - Model bias
  * @returns {number[]} - Predictions
  */
-export function linearPredict(X, weights, bias) {
+function linearPredict(X, weights, bias) {
   return X.map(row => {
     let pred = bias;
     for (let j = 0; j < row.length; j++) {
@@ -445,3 +445,20 @@ export function linearPredict(X, weights, bias) {
     return pred;
   });
 }
+
+module.exports = {
+  mean,
+  std,
+  variance,
+  median,
+  describe,
+  cosineSimilarityVectors,
+  cosineSimilarity,
+  cosineSimilarityTopK,
+  pearsonCorrelation,
+  correlation,
+  pca,
+  kmeansClustering,
+  gradientDescent,
+  linearPredict
+};

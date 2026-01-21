@@ -6,7 +6,7 @@
 /**
  * Simple Graph class with basic operations
  */
-export class Graph {
+class Graph {
   constructor() {
     this.edges = [];
   }
@@ -27,7 +27,7 @@ export class Graph {
 /**
  * Stack class (LIFO) - Note: intentionally buggy like Python version
  */
-export class Stack {
+class Stack {
   constructor() {
     this.items = [];
   }
@@ -59,7 +59,7 @@ export class Stack {
  * @param {number} n - Index in Fibonacci sequence
  * @returns {number} - Fibonacci number
  */
-export function fibonacci(n) {
+function fibonacci(n) {
   if (n <= 1) {
     return n;
   }
@@ -71,7 +71,7 @@ export function fibonacci(n) {
  * @param {number} n - Number of iterations
  * @returns {string} - Concatenated string
  */
-export function stringConcat(n) {
+function stringConcat(n) {
   let result = '';
   for (let i = 0; i < n; i++) {
     result = result + String(i);
@@ -84,7 +84,7 @@ export function stringConcat(n) {
  * @param {number[][]} matrix - 2D array
  * @returns {number[]} - Row sums (only positive)
  */
-export function matrixSum(matrix) {
+function matrixSum(matrix) {
   const result = [];
 
   for (const row of matrix) {
@@ -107,7 +107,7 @@ export function matrixSum(matrix) {
  * @param {Set<string>} visited - Visited nodes set
  * @returns {string[]} - Visited nodes in order
  */
-export function graphTraversal(graph, node, visited = null) {
+function graphTraversal(graph, node, visited = null) {
   if (visited === null) {
     visited = new Set();
   }
@@ -133,7 +133,7 @@ export function graphTraversal(graph, node, visited = null) {
  * @param {string} pattern - Regex pattern
  * @returns {string[]} - Matching strings
  */
-export function regexMatch(strings, pattern) {
+function regexMatch(strings, pattern) {
   const regex = new RegExp(pattern);
   const result = [];
 
@@ -151,7 +151,7 @@ export function regexMatch(strings, pattern) {
  * @param {string} text - Input text
  * @returns {boolean} - True if palindrome
  */
-export function isPalindrome(text) {
+function isPalindrome(text) {
   // Remove non-alphanumeric and convert to lowercase
   const cleaned = text.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
   const reversed = cleaned.split('').reverse().join('');
@@ -163,7 +163,7 @@ export function isPalindrome(text) {
  * @param {string} text - Input text
  * @returns {Map<string, number>} - Word frequency map
  */
-export function wordFrequency(text) {
+function wordFrequency(text) {
   const freq = new Map();
   const words = text.toLowerCase().split(/\s+/).filter(w => w.length > 0);
 
@@ -177,7 +177,7 @@ export function wordFrequency(text) {
 /**
  * PathFinder class for BFS shortest path
  */
-export class PathFinder {
+class PathFinder {
   constructor(graph) {
     this.graph = graph; // Map<string, string[]>
   }
@@ -236,3 +236,16 @@ export class PathFinder {
     return allPaths;
   }
 }
+
+module.exports = {
+  Graph,
+  Stack,
+  fibonacci,
+  stringConcat,
+  matrixSum,
+  graphTraversal,
+  regexMatch,
+  isPalindrome,
+  wordFrequency,
+  PathFinder
+};

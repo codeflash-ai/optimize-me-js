@@ -2,15 +2,15 @@
  * Tests for DSA Module
  */
 
-import {
+const {
   timeBasedCache,
   matrixChainOrder,
   binomialCoefficient,
   coinChange,
   knapsack
-} from '../src/dsa/cachingMemoization.js';
+} = require('../src/dsa/cachingMemoization.js');
 
-import {
+const {
   findLastNode,
   findLeafNodes,
   getAllJsonRefs,
@@ -20,9 +20,9 @@ import {
   findNodeClusters,
   calculateNodeBetweenness,
   findStronglyConnectedComponents
-} from '../src/dsa/nodes.js';
+} = require('../src/dsa/nodes.js');
 
-import {
+const {
   Graph,
   Stack,
   fibonacci,
@@ -33,7 +33,7 @@ import {
   isPalindrome,
   wordFrequency,
   PathFinder
-} from '../src/dsa/various.js';
+} = require('../src/dsa/various.js');
 
 // Caching and Memoization Tests
 describe('Caching and Memoization', () => {

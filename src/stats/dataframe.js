@@ -6,7 +6,7 @@
 /**
  * Simple DataFrame class for tabular data operations
  */
-export class DataFrame {
+class DataFrame {
   constructor(data) {
     if (Array.isArray(data)) {
       // Array of objects format
@@ -52,7 +52,7 @@ export class DataFrame {
  * @param {*} value - Value to filter by
  * @returns {Object[]} - Filtered rows
  */
-export function dataframeFilter(df, column, value) {
+function dataframeFilter(df, column, value) {
   const result = [];
 
   for (const row of df) {
@@ -71,7 +71,7 @@ export function dataframeFilter(df, column, value) {
  * @param {string} valueCol - Column to aggregate
  * @returns {Object} - Group to mean mapping
  */
-export function groupbyMean(df, groupCol, valueCol) {
+function groupbyMean(df, groupCol, valueCol) {
   const groups = {};
 
   for (const row of df) {
@@ -99,7 +99,7 @@ export function groupbyMean(df, groupCol, valueCol) {
  * @param {string} rightOn - Right join column
  * @returns {Object[]} - Merged dataframe
  */
-export function dataframeMerge(left, right, leftOn, rightOn) {
+function dataframeMerge(left, right, leftOn, rightOn) {
   const result = [];
 
   for (const leftRow of left) {
@@ -128,7 +128,7 @@ export function dataframeMerge(left, right, leftOn, rightOn) {
  * @param {string} aggfunc - Aggregation function ('sum', 'mean', 'count')
  * @returns {Object} - Pivot table as nested object
  */
-export function pivotTable(df, index, columns, values, aggfunc = 'sum') {
+function pivotTable(df, index, columns, values, aggfunc = 'sum') {
   const pivot = {};
   const counts = {};
 
@@ -170,7 +170,7 @@ export function pivotTable(df, index, columns, values, aggfunc = 'sum') {
  * @param {Function} func - Function to apply
  * @returns {Object[]} - DataFrame with transformed column
  */
-export function applyFunction(df, column, func) {
+function applyFunction(df, column, func) {
   return df.map(row => ({
     ...row,
     [column]: func(row[column])
@@ -184,7 +184,7 @@ export function applyFunction(df, column, func) {
  * @param {*} value - Fill value
  * @returns {Object[]} - DataFrame with filled values
  */
-export function fillna(df, column, value) {
+function fillna(df, column, value) {
   return df.map(row => ({
     ...row,
     [column]: row[column] === null || row[column] === undefined ? value : row[column]
@@ -197,7 +197,7 @@ export function fillna(df, column, value) {
  * @param {string[]} subset - Columns to check for duplicates
  * @returns {Object[]} - DataFrame without duplicates
  */
-export function dropDuplicates(df, subset = null) {
+function dropDuplicates(df, subset = null) {
   const seen = new Set();
   const result = [];
 
@@ -222,7 +222,7 @@ export function dropDuplicates(df, subset = null) {
  * @param {boolean} ascending - Sort order
  * @returns {Object[]} - Sorted dataframe
  */
-export function sortValues(df, by, ascending = true) {
+function sortValues(df, by, ascending = true) {
   const result = df.map(row => ({ ...row }));
   const n = result.length;
 
@@ -248,7 +248,7 @@ export function sortValues(df, by, ascending = true) {
  * @param {*[]} newIndex - New index values
  * @returns {Object[]} - Reindexed dataframe
  */
-export function reindex(df, newIndex) {
+function reindex(df, newIndex) {
   const columns = df.length > 0 ? Object.keys(df[0]) : [];
   const result = [];
 
@@ -274,7 +274,7 @@ export function reindex(df, newIndex) {
  * @param {string[]} valueVars - Value variables to unpivot
  * @returns {Object[]} - Melted dataframe
  */
-export function melt(df, idVars, valueVars) {
+function melt(df, idVars, valueVars) {
   const result = [];
 
   for (const row of df) {
@@ -296,7 +296,7 @@ export function melt(df, idVars, valueVars) {
  * @param {string[]} columns - Columns to select
  * @returns {Object[]} - Dataframe with selected columns
  */
-export function selectColumns(df, columns) {
+function selectColumns(df, columns) {
   return df.map(row => {
     const newRow = {};
     for (const col of columns) {
@@ -312,7 +312,7 @@ export function selectColumns(df, columns) {
  * @param {Object} mapping - Old name to new name mapping
  * @returns {Object[]} - Dataframe with renamed columns
  */
-export function renameColumns(df, mapping) {
+function renameColumns(df, mapping) {
   return df.map(row => {
     const newRow = {};
     for (const [key, value] of Object.entries(row)) {
@@ -322,3 +322,19 @@ export function renameColumns(df, mapping) {
     return newRow;
   });
 }
+
+module.exports = {
+  DataFrame,
+  dataframeFilter,
+  groupbyMean,
+  dataframeMerge,
+  pivotTable,
+  applyFunction,
+  fillna,
+  dropDuplicates,
+  sortValues,
+  reindex,
+  melt,
+  selectColumns,
+  renameColumns
+};

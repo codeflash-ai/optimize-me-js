@@ -9,7 +9,7 @@
  * @param {number[][]} B - Second matrix
  * @returns {number[][]} - Product matrix A * B
  */
-export function matrixMultiply(A, B) {
+function matrixMultiply(A, B) {
   const rowsA = A.length;
   const colsA = A[0].length;
   const colsB = B[0].length;
@@ -34,7 +34,7 @@ export function matrixMultiply(A, B) {
  * @param {number[]} b - Second vector
  * @returns {number} - Dot product
  */
-export function dotProduct(a, b) {
+function dotProduct(a, b) {
   if (a.length !== b.length) {
     throw new Error('Vectors must have the same length');
   }
@@ -52,7 +52,7 @@ export function dotProduct(a, b) {
  * @param {number[][]} matrix - Square matrix to invert
  * @returns {number[][]} - Inverse matrix
  */
-export function matrixInverse(matrix) {
+function matrixInverse(matrix) {
   const n = matrix.length;
 
   // Create augmented matrix [A | I]
@@ -106,7 +106,7 @@ export function matrixInverse(matrix) {
  * @param {number[][]} matrix - Square matrix
  * @returns {number} - Determinant
  */
-export function matrixDeterminant(matrix) {
+function matrixDeterminant(matrix) {
   const n = matrix.length;
 
   if (n === 1) {
@@ -137,7 +137,7 @@ export function matrixDeterminant(matrix) {
  * @param {number[][]} A - Square matrix
  * @returns {{L: number[][], U: number[][]}} - L and U matrices
  */
-export function luDecomposition(A) {
+function luDecomposition(A) {
   const n = A.length;
 
   // Initialize L and U
@@ -179,7 +179,7 @@ export function luDecomposition(A) {
  * @param {number[][]} matrix - Input matrix
  * @returns {number[][]} - Transposed matrix
  */
-export function matrixTranspose(matrix) {
+function matrixTranspose(matrix) {
   const rows = matrix.length;
   const cols = matrix[0].length;
 
@@ -200,7 +200,7 @@ export function matrixTranspose(matrix) {
  * @param {number[]} b - Right-hand side vector
  * @returns {number[]} - Solution vector x
  */
-export function linearEquationSolver(A, b) {
+function linearEquationSolver(A, b) {
   const n = A.length;
 
   // Create augmented matrix
@@ -250,7 +250,7 @@ export function linearEquationSolver(A, b) {
  * @param {number} n - Size of matrix
  * @returns {number[][]} - Identity matrix
  */
-export function identityMatrix(n) {
+function identityMatrix(n) {
   const result = Array(n).fill(null).map(() => Array(n).fill(0));
   for (let i = 0; i < n; i++) {
     result[i][i] = 1;
@@ -264,7 +264,7 @@ export function identityMatrix(n) {
  * @param {number[][]} B - Second matrix
  * @returns {number[][]} - Sum matrix A + B
  */
-export function matrixAdd(A, B) {
+function matrixAdd(A, B) {
   const rows = A.length;
   const cols = A[0].length;
 
@@ -279,7 +279,7 @@ export function matrixAdd(A, B) {
  * @param {number} scalar - Scalar value
  * @returns {number[][]} - Scaled matrix
  */
-export function matrixScalarMultiply(matrix, scalar) {
+function matrixScalarMultiply(matrix, scalar) {
   return matrix.map(row =>
     row.map(val => val * scalar)
   );
@@ -290,7 +290,7 @@ export function matrixScalarMultiply(matrix, scalar) {
  * @param {number[]} v - Input vector
  * @returns {number} - Magnitude
  */
-export function vectorMagnitude(v) {
+function vectorMagnitude(v) {
   return Math.sqrt(v.reduce((sum, val) => sum + val * val, 0));
 }
 
@@ -299,10 +299,25 @@ export function vectorMagnitude(v) {
  * @param {number[]} v - Input vector
  * @returns {number[]} - Unit vector
  */
-export function vectorNormalize(v) {
+function vectorNormalize(v) {
   const mag = vectorMagnitude(v);
   if (mag === 0) {
     return v.map(() => 0);
   }
   return v.map(val => val / mag);
 }
+
+module.exports = {
+  matrixMultiply,
+  dotProduct,
+  matrixInverse,
+  matrixDeterminant,
+  luDecomposition,
+  matrixTranspose,
+  linearEquationSolver,
+  identityMatrix,
+  matrixAdd,
+  matrixScalarMultiply,
+  vectorMagnitude,
+  vectorNormalize
+};

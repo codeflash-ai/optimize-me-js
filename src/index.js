@@ -3,7 +3,14 @@
  * JavaScript equivalents of Python algorithms for optimization
  */
 
-export * from './dsa/index.js';
-export * from './math/index.js';
-export * from './matrix/index.js';
-export * from './stats/index.js';
+const dsa = require('./dsa/index.js');
+const math = require('./math/index.js');
+const matrix = require('./matrix/index.js');
+const stats = require('./stats/index.js');
+
+module.exports = {
+  ...dsa,
+  ...math,
+  ...matrix,
+  ...stats
+};

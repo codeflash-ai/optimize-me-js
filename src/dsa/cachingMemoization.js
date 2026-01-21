@@ -8,7 +8,7 @@
  * @param {number} expirySeconds - Cache expiry time in seconds
  * @returns {Function} - Decorator function
  */
-export function timeBasedCache(expirySeconds) {
+function timeBasedCache(expirySeconds) {
   const cache = new Map();
 
   return function(fn) {
@@ -42,7 +42,7 @@ export function timeBasedCache(expirySeconds) {
  * @param {Array<[number, number]>} matrices - Array of [rows, cols] for each matrix
  * @returns {number} - Minimum number of multiplications
  */
-export function matrixChainOrder(matrices) {
+function matrixChainOrder(matrices) {
   if (!matrices || matrices.length === 0) {
     return 0;
   }
@@ -85,7 +85,7 @@ export function matrixChainOrder(matrices) {
  * @param {number} k - Items to choose
  * @returns {number} - C(n, k)
  */
-export function binomialCoefficient(n, k) {
+function binomialCoefficient(n, k) {
   if (k === 0 || k === n) {
     return 1;
   }
@@ -102,7 +102,7 @@ export function binomialCoefficient(n, k) {
  * @param {number} index - Current coin index
  * @returns {number} - Number of ways to make change
  */
-export function coinChange(coins, amount, index = 0) {
+function coinChange(coins, amount, index = 0) {
   if (amount === 0) {
     return 1;
   }
@@ -123,7 +123,7 @@ export function coinChange(coins, amount, index = 0) {
  * @param {number} n - Number of items to consider
  * @returns {number} - Maximum value achievable
  */
-export function knapsack(weights, values, capacity, n = null) {
+function knapsack(weights, values, capacity, n = null) {
   if (n === null) {
     n = weights.length;
   }
@@ -143,3 +143,11 @@ export function knapsack(weights, values, capacity, n = null) {
 
   return Math.max(include, exclude);
 }
+
+module.exports = {
+  timeBasedCache,
+  matrixChainOrder,
+  binomialCoefficient,
+  coinChange,
+  knapsack
+};

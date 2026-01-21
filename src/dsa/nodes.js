@@ -9,7 +9,7 @@
  * @param {Array<[string, string]>} edges - Array of [source, target] edges
  * @returns {string|null} - Terminal node or null if not found
  */
-export function findLastNode(nodes, edges) {
+function findLastNode(nodes, edges) {
   const nodesWithOutgoing = new Set(edges.map(([source]) => source));
 
   for (const node of nodes) {
@@ -31,7 +31,7 @@ export function findLastNode(nodes, edges) {
  * @param {Array<[string, string]>} edges - Array of [source, target] edges
  * @returns {string[]} - Array of leaf nodes
  */
-export function findLeafNodes(nodes, edges) {
+function findLeafNodes(nodes, edges) {
   const nodesWithOutgoing = new Set(edges.map(([source]) => source));
   return nodes.filter(node => !nodesWithOutgoing.has(node));
 }
@@ -41,7 +41,7 @@ export function findLeafNodes(nodes, edges) {
  * @param {*} item - JSON schema item
  * @returns {string[]} - Array of ref strings
  */
-export function getAllJsonRefs(item) {
+function getAllJsonRefs(item) {
   const refs = [];
 
   if (Array.isArray(item)) {
@@ -66,7 +66,7 @@ export function getAllJsonRefs(item) {
  * @param {Array<[string, string]>} edges - Array of [source, target] edges
  * @returns {Set<string>} - Set of nodes in cycles
  */
-export function findCycleVertices(edges) {
+function findCycleVertices(edges) {
   // Build adjacency list
   const graph = new Map();
   const allNodes = new Set();
@@ -121,7 +121,7 @@ export function findCycleVertices(edges) {
  * @param {string[][]} verticesLayers - Array of vertex layers
  * @returns {string[][]} - Sorted layers
  */
-export function sortChatInputsFirst(verticesLayers) {
+function sortChatInputsFirst(verticesLayers) {
   return verticesLayers.map(layer => {
     const chatInputs = layer.filter(v => v.toLowerCase().includes('chat'));
     const others = layer.filter(v => !v.toLowerCase().includes('chat'));
@@ -135,7 +135,7 @@ export function sortChatInputsFirst(verticesLayers) {
  * @param {Array<[string, string]>} connections - Array of [source, target] edges
  * @returns {string|null} - Node with highest degree
  */
-export function findNodeWithHighestDegree(nodes, connections) {
+function findNodeWithHighestDegree(nodes, connections) {
   if (nodes.length === 0) {
     return null;
   }
@@ -173,7 +173,7 @@ export function findNodeWithHighestDegree(nodes, connections) {
  * @param {Array<[string, string]>} edges - Array of [source, target] edges
  * @returns {string[][]} - Array of clusters (each cluster is array of nodes)
  */
-export function findNodeClusters(nodes, edges) {
+function findNodeClusters(nodes, edges) {
   // Build undirected adjacency list
   const graph = new Map();
   for (const node of nodes) {
@@ -223,7 +223,7 @@ export function findNodeClusters(nodes, edges) {
  * @param {Array<[string, string]>} edges - Array of [source, target] edges
  * @returns {Map<string, number>} - Map of node to betweenness score
  */
-export function calculateNodeBetweenness(nodes, edges) {
+function calculateNodeBetweenness(nodes, edges) {
   const betweenness = new Map();
   for (const node of nodes) {
     betweenness.set(node, 0);
@@ -303,7 +303,7 @@ export function calculateNodeBetweenness(nodes, edges) {
  * @param {Array<[string, string]>} edges - Array of [source, target] edges
  * @returns {string[][]} - Array of SCCs
  */
-export function findStronglyConnectedComponents(nodes, edges) {
+function findStronglyConnectedComponents(nodes, edges) {
   // Build adjacency list and reverse graph
   const graph = new Map();
   const reverseGraph = new Map();
@@ -367,3 +367,15 @@ export function findStronglyConnectedComponents(nodes, edges) {
 
   return sccs;
 }
+
+module.exports = {
+  findLastNode,
+  findLeafNodes,
+  getAllJsonRefs,
+  findCycleVertices,
+  sortChatInputsFirst,
+  findNodeWithHighestDegree,
+  findNodeClusters,
+  calculateNodeBetweenness,
+  findStronglyConnectedComponents
+};

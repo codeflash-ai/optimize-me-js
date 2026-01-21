@@ -2,7 +2,7 @@
  * Tests for Math Module
  */
 
-import {
+const {
   gcdRecursive,
   lcm,
   isPrime,
@@ -13,7 +13,7 @@ import {
   lagrangeInterpolation,
   factorial,
   power
-} from '../src/math/computation.js';
+} = require('../src/math/computation.js');
 
 describe('GCD and LCM', () => {
   describe('gcdRecursive', () => {

@@ -2,7 +2,7 @@
  * Tests for Matrix Module
  */
 
-import {
+const {
   matrixMultiply,
   dotProduct,
   matrixInverse,
@@ -15,9 +15,9 @@ import {
   matrixScalarMultiply,
   vectorMagnitude,
   vectorNormalize
-} from '../src/matrix/matrixOperations.js';
+} = require('../src/matrix/matrixOperations.js');
 
-import {
+const {
   convolution1d,
   fft,
   createGaussianKernel,
@@ -26,7 +26,7 @@ import {
   imageRotation,
   histogramEqualization,
   rollingMean
-} from '../src/matrix/signalProcessing.js';
+} = require('../src/matrix/signalProcessing.js');
 
 describe('Matrix Operations', () => {
   describe('matrixMultiply', () => {

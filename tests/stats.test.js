@@ -2,12 +2,12 @@
  * Tests for Stats Module
  */
 
-import {
+const {
   mean,
   std,
   variance,
   median,
-  describe as describeStats,
+  describe: describeStats,
   cosineSimilarityVectors,
   cosineSimilarity,
   cosineSimilarityTopK,
@@ -17,9 +17,9 @@ import {
   kmeansClustering,
   gradientDescent,
   linearPredict
-} from '../src/stats/statistical.js';
+} = require('../src/stats/statistical.js');
 
-import {
+const {
   DataFrame,
   dataframeFilter,
   groupbyMean,
@@ -33,7 +33,7 @@ import {
   melt,
   selectColumns,
   renameColumns
-} from '../src/stats/dataframe.js';
+} = require('../src/stats/dataframe.js');
 
 describe('Statistical Functions', () => {
   describe('mean', () => {

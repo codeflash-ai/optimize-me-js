@@ -9,7 +9,7 @@
  * @param {number[]} kernel - Convolution kernel
  * @returns {number[]} - Convolved signal
  */
-export function convolution1d(signal, kernel) {
+function convolution1d(signal, kernel) {
   const signalLen = signal.length;
   const kernelLen = kernel.length;
   const outputLen = signalLen + kernelLen - 1;
@@ -33,7 +33,7 @@ export function convolution1d(signal, kernel) {
  * @param {number[]} x - Input signal (real values, length must be power of 2)
  * @returns {{real: number[], imag: number[]}} - FFT result (complex)
  */
-export function fft(x) {
+function fft(x) {
   const n = x.length;
 
   if (n === 1) {
@@ -87,7 +87,7 @@ export function fft(x) {
  * @param {{real: number[], imag: number[]}} X - FFT result
  * @returns {number[]} - Time domain signal
  */
-export function ifft(X) {
+function ifft(X) {
   const n = X.real.length;
 
   // Conjugate
@@ -106,7 +106,7 @@ export function ifft(X) {
  * @param {number} sigma - Standard deviation
  * @returns {number[][]} - 2D Gaussian kernel
  */
-export function createGaussianKernel(size, sigma) {
+function createGaussianKernel(size, sigma) {
   const kernel = Array(size).fill(null).map(() => Array(size).fill(0));
   const center = Math.floor(size / 2);
   let sum = 0;
@@ -137,7 +137,7 @@ export function createGaussianKernel(size, sigma) {
  * @param {number[][]} kernel - Convolution kernel
  * @returns {number[][]} - Filtered image
  */
-export function convolution2d(image, kernel) {
+function convolution2d(image, kernel) {
   const imageRows = image.length;
   const imageCols = image[0].length;
   const kernelSize = kernel.length;
@@ -174,7 +174,7 @@ export function convolution2d(image, kernel) {
  * @param {number} sigma - Standard deviation
  * @returns {number[][]} - Blurred image
  */
-export function gaussianBlur(image, kernelSize = 5, sigma = 1.0) {
+function gaussianBlur(image, kernelSize = 5, sigma = 1.0) {
   const kernel = createGaussianKernel(kernelSize, sigma);
   return convolution2d(image, kernel);
 }
@@ -185,7 +185,7 @@ export function gaussianBlur(image, kernelSize = 5, sigma = 1.0) {
  * @param {number} angleDegrees - Rotation angle in degrees
  * @returns {number[][]} - Rotated image
  */
-export function imageRotation(image, angleDegrees) {
+function imageRotation(image, angleDegrees) {
   const rows = image.length;
   const cols = image[0].length;
   const angleRad = angleDegrees * Math.PI / 180;
@@ -225,7 +225,7 @@ export function imageRotation(image, angleDegrees) {
  * @param {number[][]} image - Input grayscale image (0-255)
  * @returns {number[][]} - Equalized image
  */
-export function histogramEqualization(image) {
+function histogramEqualization(image) {
   const rows = image.length;
   const cols = image[0].length;
   const totalPixels = rows * cols;
@@ -279,7 +279,7 @@ export function histogramEqualization(image) {
  * @param {number} window - Window size
  * @returns {number[]} - Rolling mean (with NaN for incomplete windows)
  */
-export function rollingMean(series, window) {
+function rollingMean(series, window) {
   const result = [];
 
   for (let i = 0; i < series.length; i++) {
@@ -296,3 +296,15 @@ export function rollingMean(series, window) {
 
   return result;
 }
+
+module.exports = {
+  convolution1d,
+  fft,
+  ifft,
+  createGaussianKernel,
+  convolution2d,
+  gaussianBlur,
+  imageRotation,
+  histogramEqualization,
+  rollingMean
+};

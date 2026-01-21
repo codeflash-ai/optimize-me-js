@@ -2,4 +2,8 @@
  * Math Module - Mathematical Computations
  */
 
-export * from './computation.js';
+const computation = require('./computation.js');
+
+module.exports = {
+  ...computation
+};
