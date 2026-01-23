@@ -1,0 +1,28 @@
+{
+  "name": "optimize-me-js",
+  "version": "1.0.0",
+  "description": "JavaScript equivalents of Python algorithms for optimization",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.6.2",
+    "jest-junit": "^16.0.0",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "codeflash": {
+    "moduleRoot": "src",
+    "testsRoot": "tests",
+    "language": "javascript"
+  }
+}
