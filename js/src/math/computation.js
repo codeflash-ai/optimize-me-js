@@ -10,13 +10,18 @@
  * @returns {number} - GCD of a and b
  */
 function gcdRecursive(a, b) {
-  a = Math.abs(a);
-  b = Math.abs(b);
+  const abs = Math.abs;
+  a = abs(a);
+  b = abs(b);
 
-  if (b === 0) {
-    return a;
+  // Iterative replacement for the recursive Euclidean algorithm.
+  // Uses the same termination condition (b === 0) and returns the same results.
+  while (b !== 0) {
+    const t = a % b;
+    a = b;
+    b = t;
   }
-  return gcdRecursive(b, a % b);
+  return a;
 }
 
 /**
